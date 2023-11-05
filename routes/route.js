@@ -1,6 +1,6 @@
 
 import express, { Router } from 'express';
-import { deleteStudent, getTeachers, getTeachersData, updatetUsers ,getNewEnroll,getAllStudent, deleteTeacher , getNotice} from '../controller/user-controller.js';
+import { deleteStudent, getTeachers, getTeachersData, updatetUsers ,getNewEnroll,getAllStudent, deleteTeacher , getNotice, updatetStd, getStd} from '../controller/user-controller.js';
 import multer from 'multer';
 import {Student, Teachers ,Enrolls , Notice} from '../schema/user-schema.js';
 
@@ -100,7 +100,7 @@ router.post('/deleteStudent', deleteStudent);
 // router.post('/updateUser', updatetUsers)
 // router.post('/deleteUser', deleteUser)
 
-export default router;
+
 
 
 
@@ -125,3 +125,10 @@ router.post('/noticeUpload', noticeFileUpload.single('noticeFile'), async (req, 
     res.status(201).json('success');
 });
 router.get('/getNotice', getNotice);
+
+
+
+export default router;
+
+router.post('/getStd', getStd);
+router.post('/updateStd', updatetStd);

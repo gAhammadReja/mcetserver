@@ -93,3 +93,29 @@ export const getNotice = async (request, response) => {
         response.status(404).json({ message: error.message });
     }
 }
+
+export const getStd = async (request, response) => {
+    try {
+        const data = await Student.findById({ _id: req.body.id })
+        response.status(200).json(data);
+    } catch (error) {
+        response.status(404).json({ message: error.message });
+    }
+}
+export const updatetStd = async (req, res) => {
+    try {
+        await Student.updateMany({ _id: req.body.id }, {
+            $set: {
+                studentName: req.body.studentName,
+                mobile: req.body.uRoll,
+                stream: req.body.stream,
+                year: req.body.year,
+                feesPaid: req.body.feesPaid,
+                courseFee: req.body.courseFee,
+            }
+        })
+        res.status(201).json('successfully updated')
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
