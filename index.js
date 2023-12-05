@@ -26,8 +26,8 @@ Connection(dbusername,dbpassword);
 
 
 //middle wayer to public folder
-const staticPath = path.join(__dirname, '../client/build');
-app.use(express.static(staticPath));
+// const staticPath = path.join(__dirname, '../client/build');
+// app.use(express.static(staticPath));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -38,7 +38,8 @@ const validPassword = 'password123';
 app.post('/admin', (req, res) => {
     const { username, password } = req.body;
     if (username === validUsername && password === validPassword) {
-            res.sendFile(path.join(__dirname,'../client/build','index.html'))
+            res.status(401).sendFile(path.join(__dirname, 'public', 'Invalid Credentials.html'));          
+            // res.sendFile(path.join(__dirname,'../client/build','index.html'))
     } else {
             res.status(401).sendFile(path.join(__dirname, 'public', 'Invalid Credentials.html'));          
     }
@@ -64,9 +65,9 @@ contactEmail.verify((error)=>{
   }
 })
 
-app.get('/contact',(req,res)=>{
-  res.sendFile(path.join(__dirname,'../client/build','index.html'))
-})
+// app.get('/contact',(req,res)=>{
+//   res.sendFile(path.join(__dirname,'../client/build','index.html'))
+// })
 app.post('/contact',(req,res)=>{
   const cname = req.body.cname;
   const cemail = req.body.cemail;
